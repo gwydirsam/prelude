@@ -1,3 +1,6 @@
 [submodule "personal"]
 	path = personal
 	url = https://github.com/Gwydir8/Emacs-Personal-Config
+[submodule "themes/base16-emacs"]
+	path = themes/base16-emacs
+	url = https://github.com/Gwydir8/base16-emacs.git
