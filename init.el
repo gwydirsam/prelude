@@ -58,9 +58,10 @@ ELPA (or MELPA).")
 ;; add Prelude's directories to Emacs's `load-path'
 (add-to-list 'load-path prelude-modules-dir)
 (add-to-list 'load-path prelude-vendor-dir)
+(add-to-list 'load-path prelude-personal-dir)
 
 ;; the core stuff
-(require 'prelude-packages)
+(require 'sam-packages)
 (require 'prelude-ui)
 (require 'prelude-core)
 (require 'prelude-mode)
@@ -78,7 +79,7 @@ ELPA (or MELPA).")
 (when (file-exists-p prelude-personal-dir)
   (mapc 'load (directory-files prelude-personal-dir 't "^[^#].*el$")))
 
-(message "Prelude is ready to do thy bidding, Master %s!" (getenv "USER"))
+(message "Emacs is ready to do thy bidding, Master %s!" (getenv "USER"))
 
 (prelude-eval-after-init
  ;; greet the use with some useful tip
