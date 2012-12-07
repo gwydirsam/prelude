@@ -172,6 +172,7 @@
       ido-create-new-buffer 'always
       ido-use-filename-at-point 'guess
       ido-max-prospects 10
+      ido-everywhere t
       ido-save-directory-list-file (expand-file-name "ido.hist" prelude-savefile-dir)
       ido-default-file-method 'selected-window)
 
@@ -212,9 +213,6 @@
 (require 'projectile)
 (setq projectile-cache-file (expand-file-name  "projectile.cache" prelude-savefile-dir))
 (projectile-global-mode t)
-
-(require 'helm-misc)
-(require 'helm-projectile)
 
 (defun helm-prelude ()
   "Preconfigured `helm'."
