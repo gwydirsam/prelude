@@ -4,6 +4,3 @@
 [submodule "themes/base16-emacs"]
 	path = themes/base16-emacs
 	url = https://github.com/Gwydir8/base16-emacs.git
-[submodule "snippets/rails"]
-	path = snippets/rails
-	url = git://github.com/eschulte/yasnippets-rails.git
