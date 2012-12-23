@@ -34,18 +34,17 @@
 
 ;;; Code:
 
-;;;###autoload
-(progn 
-  (require 'python)
+(require 'prelude-programming)
+(prelude-ensure-module-deps '(python))
 
-  (defun prelude-python-mode-defaults ()
-    (run-hooks 'prelude-prog-mode-hook) ;; run manually; not derived from prog-mode
-    (electric-indent-mode -1))
+(defun prelude-python-mode-defaults ()
+  (run-hooks 'prelude-prog-mode-hook) ;; run manually; not derived from prog-mode
+  (electric-indent-mode -1))
 
-  (setq prelude-python-mode-hook 'prelude-python-mode-defaults)
+(setq prelude-python-mode-hook 'prelude-python-mode-defaults)
 
-  (add-hook 'python-mode-hook (lambda () 
-                                (run-hooks 'prelude-python-mode-hook))))
+(add-hook 'python-mode-hook (lambda ()
+                              (run-hooks 'prelude-python-mode-hook)))
 (provide 'prelude-python)
 
 ;;; prelude-python.el ends here

@@ -33,37 +33,35 @@
 
 ;;; Code:
 
-;;;###autoload
-(progn
- ;; AUCTeX configuration
- (setq TeX-auto-save t)
- (setq TeX-parse-self t)
+;; AUCTeX configuration
+(setq TeX-auto-save t)
+(setq TeX-parse-self t)
 
- (setq-default TeX-master nil)
+(setq-default TeX-master nil)
 
- ;; use pdflatex
- (setq TeX-PDF-mode t)
+;; use pdflatex
+(setq TeX-PDF-mode t)
 
- (setq TeX-view-program-selection
-       '((output-dvi "DVI Viewer")
-         (output-pdf "PDF Viewer")
-         (output-html "HTML Viewer")))
- 
- ;; this section is good for OS X only
- ;; TODO add sensible defaults for Linux/Windows
- (setq TeX-view-program-list
-       '(("DVI Viewer" "open %o")
-         ("PDF Viewer" "open %o")
-         ("HTML Viewer" "open %o")))
+(setq TeX-view-program-selection
+      '((output-dvi "DVI Viewer")
+        (output-pdf "PDF Viewer")
+        (output-html "HTML Viewer")))
 
- (defun prelude-latex-mode-defaults ()
-   (turn-on-auto-fill)
-   (abbrev-mode +1))
+;; this section is good for OS X only
+;; TODO add sensible defaults for Linux/Windows
+(setq TeX-view-program-list
+      '(("DVI Viewer" "open %o")
+        ("PDF Viewer" "open %o")
+        ("HTML Viewer" "open %o")))
 
- (setq prelude-latex-mode-hook 'prelude-latex-mode-defaults)
+(defun prelude-latex-mode-defaults ()
+  (turn-on-auto-fill)
+  (abbrev-mode +1))
 
- (add-hook 'LaTeX-mode-hook (lambda ()
-                              (run-hooks 'prelude-latex-mode-hook))))
+(setq prelude-latex-mode-hook 'prelude-latex-mode-defaults)
+
+(add-hook 'LaTeX-mode-hook (lambda ()
+                             (run-hooks 'prelude-latex-mode-hook)))
 
 (provide 'prelude-latex)
 

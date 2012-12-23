@@ -33,7 +33,8 @@
 
 ;;; Code:
 
-;;;###autoload
+(require 'prelude-programming)
+
 (eval-after-load 'js-mode
   '(progn
      (defun prelude-js-mode-defaults ()

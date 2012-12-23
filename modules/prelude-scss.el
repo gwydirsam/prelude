@@ -33,18 +33,16 @@
 
 ;;; Code:
 
-;;;###autoload
-(progn
-  (require 'prelude-css)
+(require 'prelude-css)
 
-  (defun prelude-scss-mode-defaults ()
-    (prelude-css-mode-defaults)
-    ;; turn off annoying auto-compile on save
-    (setq scss-compile-at-save nil))
+(defun prelude-scss-mode-defaults ()
+  (prelude-css-mode-defaults)
+  ;; turn off annoying auto-compile on save
+  (setq scss-compile-at-save nil))
 
-  (setq prelude-scss-mode-hook 'prelude-scss-mode-defaults)
+(setq prelude-scss-mode-hook 'prelude-scss-mode-defaults)
 
-  (add-hook 'scss-mode-hook (lambda () (run-hooks 'prelude-scss-mode-hook))))
+(add-hook 'scss-mode-hook (lambda () (run-hooks 'prelude-scss-mode-hook)))
 
 (provide 'prelude-scss)
 ;;; prelude-scss.el ends here

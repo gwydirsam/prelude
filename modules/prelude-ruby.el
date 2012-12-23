@@ -33,42 +33,43 @@
 
 ;;; Code:
 
-;;;###autoload
-(progn
-  (require 'ruby-block)
-  ;; Rake files are ruby, too, as are gemspecs, rackup files, and gemfiles.
-  (add-to-list 'auto-mode-alist '("\\.rake\\'" . ruby-mode))
-  (add-to-list 'auto-mode-alist '("Rakefile\\'" . ruby-mode))
-  (add-to-list 'auto-mode-alist '("\\.gemspec\\'" . ruby-mode))
-  (add-to-list 'auto-mode-alist '("\\.ru\\'" . ruby-mode))
-  (add-to-list 'auto-mode-alist '("Gemfile\\'" . ruby-mode))
-  (add-to-list 'auto-mode-alist '("Guardfile\\'" . ruby-mode))
-  (add-to-list 'auto-mode-alist '("Capfile\\'" . ruby-mode))
-  (add-to-list 'auto-mode-alist '("\\.thor\\'" . ruby-mode))
-  (add-to-list 'auto-mode-alist '("Thorfile\\'" . ruby-mode))
-  (add-to-list 'auto-mode-alist '("Vagrantfile\\'" . ruby-mode))
+(require 'prelude-programming)
+(prelude-ensure-module-deps '(ruby-tools inf-ruby yari ruby-end ruby-block))
 
-  ;; We never want to edit Rubinius bytecode
-  (add-to-list 'completion-ignored-extensions ".rbc")
+(require 'ruby-block)
+;; Rake files are ruby, too, as are gemspecs, rackup files, and gemfiles.
+(add-to-list 'auto-mode-alist '("\\.rake\\'" . ruby-mode))
+(add-to-list 'auto-mode-alist '("Rakefile\\'" . ruby-mode))
+(add-to-list 'auto-mode-alist '("\\.gemspec\\'" . ruby-mode))
+(add-to-list 'auto-mode-alist '("\\.ru\\'" . ruby-mode))
+(add-to-list 'auto-mode-alist '("Gemfile\\'" . ruby-mode))
+(add-to-list 'auto-mode-alist '("Guardfile\\'" . ruby-mode))
+(add-to-list 'auto-mode-alist '("Capfile\\'" . ruby-mode))
+(add-to-list 'auto-mode-alist '("\\.thor\\'" . ruby-mode))
+(add-to-list 'auto-mode-alist '("Thorfile\\'" . ruby-mode))
+(add-to-list 'auto-mode-alist '("Vagrantfile\\'" . ruby-mode))
 
-  (define-key 'help-command (kbd "R") 'yari)
+;; We never want to edit Rubinius bytecode
+(add-to-list 'completion-ignored-extensions ".rbc")
 
-  (eval-after-load 'ruby-mode
-    '(progn
-       (defun prelude-ruby-mode-defaults ()
-         (inf-ruby-setup-keybindings)
-         ;; turn off the annoying input echo in irb
-         (setq comint-process-echoes t)
-         (ruby-block-mode t)
-         (ruby-end-mode +1)
-         (ruby-tools-mode +1)
-         ;; CamelCase aware editing operations
-         (subword-mode +1))
+(define-key 'help-command (kbd "R") 'yari)
 
-       (setq prelude-ruby-mode-hook 'prelude-ruby-mode-defaults)
+(eval-after-load 'ruby-mode
+  '(progn
+     (defun prelude-ruby-mode-defaults ()
+       (inf-ruby-setup-keybindings)
+       ;; turn off the annoying input echo in irb
+       (setq comint-process-echoes t)
+       (ruby-block-mode t)
+       (ruby-end-mode +1)
+       (ruby-tools-mode +1)
+       ;; CamelCase aware editing operations
+       (subword-mode +1))
 
-       (add-hook 'ruby-mode-hook (lambda ()
-                                   (run-hooks 'prelude-ruby-mode-hook))))))
+     (setq prelude-ruby-mode-hook 'prelude-ruby-mode-defaults)
+
+     (add-hook 'ruby-mode-hook (lambda ()
+                                 (run-hooks 'prelude-ruby-mode-hook)))))
 
 (provide 'prelude-ruby)
 ;;; prelude-ruby.el ends here

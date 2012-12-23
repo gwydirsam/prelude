@@ -33,31 +33,32 @@
 
 ;;; Code:
 
-;;;###autoload
-(progn
-  (require 'prelude-lisp)
+(require 'prelude-lisp)
+(prelude-ensure-module-deps '(clojure-mode nrepl))
 
-  (eval-after-load 'clojure-mode
-    '(progn
-       (defun prelude-clojure-mode-defaults ()
-         (run-hooks 'prelude-lisp-coding-hook))
+(eval-after-load 'clojure-mode
+  '(progn
+     (defun prelude-clojure-mode-defaults ()
+       (subword-mode +1)
+       (run-hooks 'prelude-lisp-coding-hook))
 
-       (setq prelude-clojure-mode-hook 'prelude-clojure-mode-defaults)
+     (setq prelude-clojure-mode-hook 'prelude-clojure-mode-defaults)
 
-       (add-hook 'clojure-mode-hook (lambda ()
-                                      (run-hooks 'prelude-clojure-mode-hook)))))
+     (add-hook 'clojure-mode-hook (lambda ()
+                                    (run-hooks 'prelude-clojure-mode-hook)))))
 
-  (eval-after-load 'nrepl
-    '(progn
-       (add-hook 'nrepl-interaction-mode-hook 'nrepl-turn-on-eldoc-mode)
+(eval-after-load 'nrepl
+  '(progn
+     (add-hook 'nrepl-interaction-mode-hook 'nrepl-turn-on-eldoc-mode)
 
-       (defun prelude-nrepl-mode-defaults ()
-         (run-hooks 'prelude-interactive-lisp-coding-hook))
+     (defun prelude-nrepl-mode-defaults ()
+       (subword-mode +1)
+       (run-hooks 'prelude-interactive-lisp-coding-hook))
 
-       (setq prelude-nrepl-mode-hook 'prelude-nrepl-mode-defaults)
+     (setq prelude-nrepl-mode-hook 'prelude-nrepl-mode-defaults)
 
-       (add-hook 'nrepl-mode-hook (lambda ()
-                                    (run-hooks 'prelude-nrepl-mode-hook))))))
+     (add-hook 'nrepl-mode-hook (lambda ()
+                                  (run-hooks 'prelude-nrepl-mode-hook)))))
 
 (provide 'prelude-clojure)
 

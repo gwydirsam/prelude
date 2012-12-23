@@ -33,18 +33,16 @@
 
 ;;; Code:
 
-;;;###autoload
-(progn
-  (require 'scala-mode-auto)
+(require 'prelude-programming)
+(prelude-ensure-module-deps '(scala-mode2))
 
-  (defun prelude-scala-mode-defaults ()
-    (run-hooks 'prelude-prog-mode-hook) ;; run manually; not derived from prog-mode
-    (subword-mode +1))
+(defun prelude-scala-mode-defaults ()
+  (subword-mode +1))
 
-  (setq prelude-scala-mode-hook 'prelude-scala-mode-defaults)
+(setq prelude-scala-mode-hook 'prelude-scala-mode-defaults)
 
-  (add-hook 'scala-mode-hook (lambda ()
-                               (run-hooks 'prelude-scala-mode-hook))))
+(add-hook 'scala-mode-hook (lambda ()
+                             (run-hooks 'prelude-scala-mode-hook)))
 (provide 'prelude-scala)
 
 ;;; prelude-scala.el ends here

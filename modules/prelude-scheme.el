@@ -33,7 +33,8 @@
 
 ;;; Code:
 
-;;;###autoload
+(require 'prelude-lisp)
+
 (add-hook 'scheme-mode-hook (lambda () (run-hooks 'prelude-lisp-coding-hook)))
 
 (provide 'prelude-scheme)

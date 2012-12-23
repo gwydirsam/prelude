@@ -33,7 +33,6 @@
 
 ;;; Code:
 
-;;;###autoload
 (eval-after-load 'mediawiki
   '(progn
      (setq mediawiki-site-alist '(("Wikipedia" "http://en.wikipedia.org/w" "" "" "Main Page")

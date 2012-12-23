@@ -5,7 +5,7 @@
 ;; Author: Gleb Peregud <gleber.p@gmail.com>
 ;; Version: 1.0.0
 ;; Keywords: convenience erlang
-;; Package-Requires: ((erlang "2.4.1"))
+;; Package-Requires: ((erlang "2.4.1") (projectile "0.7"))
 
 ;; This file is not part of GNU Emacs.
 
@@ -32,42 +32,29 @@
 
 ;;; Code:
 
-;;;###autoload
-(progn 
-  (defcustom wrangler-path nil
-    "*The location of wrangler elisp directory"
-    :group 'prelude-erlang
-    :type 'string
-    :safe 'stringp)
+(require 'prelude-programming)
+(prelude-ensure-module-deps '(erlang))
 
-  (when (require 'erlang-start nil t)
+(defcustom wrangler-path nil
+  "*The location of wrangler elisp directory"
+  :group 'prelude-erlang
+  :type 'string
+  :safe 'stringp)
 
-    (eval-after-load 'erlang-mode
-      '(progn
-         (flymake-mode)))
+(require 'projectile)
 
-    (when (not (null wrangler-path))
-      (add-to-list 'load-path wrangler-path)
-      (require 'wrangler)))
+(when (require 'erlang-start nil t)
 
-  (defun erlang-rebar-compile ()
-    (interactive)
-    (let* ((dir (or (projectile-project-root)
-                    (file-name-directory (buffer-file-name))))
-           (pref (concat "cd " dir " && "))
-           (cmd (cond ((file-exists-p (expand-file-name "rebar" dir))    "./rebar compile")
-                      ((executable-find "rebar")                         "rebar compile")
-                      ((file-exists-p (expand-file-name "Makefile" dir)) "make")
-                      (t nil))))
-      (if cmd
-          (compilation-start (concat pref cmd))
-        (call-interactively 'inferior-erlang-compile))
-      ))
+  (eval-after-load 'erlang-mode
+    '(progn
+       (flymake-mode)))
 
-  (add-hook 'erlang-mode-hook (lambda ()
-                                (make-variable-buffer-local 'projectile-project-root-files)
-                                (setq projectile-project-root-files '("rebar.config" ".git" ".hg" ".bzr" ".projectile"))
-                                (setq erlang-compile-function 'erlang-rebar-compile))))
+  (when (not (null wrangler-path))
+    (add-to-list 'load-path wrangler-path)
+    (require 'wrangler)))
+
+(add-hook 'erlang-mode-hook (lambda ()
+                              (setq erlang-compile-function 'projectile-compile-project)))
 
 (provide 'prelude-erlang)
 

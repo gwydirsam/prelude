@@ -33,25 +33,26 @@
 
 ;;; Code:
 
-;;;###autoload
-(progn
-  ;; Lisp configuration
-  (define-key read-expression-map (kbd "TAB") 'lisp-complete-symbol)
+(require 'prelude-programming)
+(prelude-ensure-module-deps '(paredit rainbow-delimiters))
 
-  ;; a great lisp coding hook
-  (defun prelude-lisp-coding-defaults ()
-    (paredit-mode +1)
-    (rainbow-delimiters-mode +1))
+;; Lisp configuration
+(define-key read-expression-map (kbd "TAB") 'lisp-complete-symbol)
 
-  (setq prelude-lisp-coding-hook 'prelude-lisp-coding-defaults)
+;; a great lisp coding hook
+(defun prelude-lisp-coding-defaults ()
+  (paredit-mode +1)
+  (rainbow-delimiters-mode +1))
 
-  ;; interactive modes don't need whitespace checks
-  (defun prelude-interactive-lisp-coding-defaults ()
-    (paredit-mode +1)
-    (rainbow-delimiters-mode +1)
-    (whitespace-mode -1))
+(setq prelude-lisp-coding-hook 'prelude-lisp-coding-defaults)
 
-  (setq prelude-interactive-lisp-coding-hook 'prelude-interactive-lisp-coding-defaults))
+;; interactive modes don't need whitespace checks
+(defun prelude-interactive-lisp-coding-defaults ()
+  (paredit-mode +1)
+  (rainbow-delimiters-mode +1)
+  (whitespace-mode -1))
+
+(setq prelude-interactive-lisp-coding-hook 'prelude-interactive-lisp-coding-defaults)
 
 (provide 'prelude-lisp)
 
