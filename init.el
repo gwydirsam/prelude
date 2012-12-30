@@ -73,7 +73,6 @@ Emacs load path."
 (add-to-list 'load-path prelude-modules-dir)
 (add-to-list 'load-path prelude-vendor-dir)
 (prelude-add-subfolders-to-load-path prelude-vendor-dir)
-(add-to-list 'load-path prelude-personal-dir)
 
 (require 'dash)
 
