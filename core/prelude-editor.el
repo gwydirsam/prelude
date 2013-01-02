@@ -1,6 +1,6 @@
 ;;; prelude-editor.el --- Emacs Prelude: enhanced core editing experience.
 ;;
-;; Copyright (c) 2011-2012 Bozhidar Batsov
+;; Copyright © 2011-2013 Bozhidar Batsov
 ;;
 ;; Author: Bozhidar Batsov <bozhidar@batsov.com>
 ;; URL: http://batsov.com/emacs-prelude
@@ -335,6 +335,9 @@ indent yanked text (with prefix arg don't indent)."
 
 ;; enable Prelude's keybindings
 (prelude-global-mode t)
+
+;; enable winner-mode to manage window configurations
+(winner-mode +1)
 
 (provide 'prelude-editor)
 
