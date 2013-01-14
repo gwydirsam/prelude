@@ -47,15 +47,21 @@
     apache-mode
     applescript-mode
     auctex
+    auto-compile
+    browse-url-dwim
+    cl-lib
     clojure-mode
+    clojure-test-mode
     coffee-mode
     css-mode
+    dash
     dired+
     dired-details
     dired-details+
     dired-single
-    erlang
+    dropdown-list
     elisp-slime-nav
+    erlang
     evil
     evil-leader
     evil-numbers
@@ -64,11 +70,20 @@
     expand-region
     feature-mode
     findr
+    flycheck
+    flymake-coffee
     flymake-css
+    flymake-cursor
     flymake-easy
     flymake-haml
+    flymake-jslint
+    flymake-perlcritic
+    flymake-php
+    flymake-python-pyflakes
     flymake-ruby
     flymake-sass
+    flymake-shell
+    flyspell-lazy
     font-utils
     gh
     gist
@@ -76,11 +91,16 @@
     gitconfig-mode
     gitignore-mode
     gitty
-    groovy-mode
+    go-mode
     google-c-style
+    groovy-mode
+    guru-mode
     haml-mode
     haskell-mode
+    hide-comnt
     highlight-parentheses
+    hl-line+
+    hl-sexp
     htmlize
     inf-ruby
     inflections
@@ -91,15 +111,22 @@
     logito
     lua-mode
     magit
+    magit-commit-training-wheels
+    magit-gh-pulls
     magit-push-remote
     magithub
-    minimap
     markdown-mode
     mediawiki
     melpa
+    minimap
+    multi-term
+    notmuch
     nrepl
     org
     org-bullets
+    osx-browse
+    osx-location
+    packed
     paredit
     pcache
     persistent-soft
@@ -111,6 +138,7 @@
     python
     rainbow-delimiters
     rainbow-mode
+    redo+
     rinari
     ruby-block
     ruby-compilation
@@ -121,23 +149,31 @@
     ruby-tools
     rvm
     s
-    surround
     sass-mode
     scala-mode
+    scala-mode2
     scss-mode
+    shell-command
+    shell-here
+    smex
     smooth-scrolling
     sr-speedbar
+    ssh-config-mode
     string-utils
+    stripe-buffer
+    sunrise-commander
+    surround
     textile-mode
     ucs-utils
     undo-tree
+    unicode-fonts
+    unicode-progress-reporter
     unicode-whitespace
     volatile-highlights
     writegood-mode
-    yari
-    yasnippet
     yaml-mode
-    evil-paredit)
+    yari
+    yasnippet)
   "A list of packages to ensure are installed at launch.")
 
 (defun prelude-packages-installed-p ()
