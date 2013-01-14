@@ -18,3 +18,4 @@ savefile/
 *~undo-tree~
 org-clock-save.el
 tramp
+/prelude-modules.el

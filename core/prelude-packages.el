@@ -43,7 +43,8 @@
 (setq url-http-attempt-keepalives nil)
 
 (defvar prelude-packages
-  '(ack-and-a-half
+  '(ace-jump-mode
+    ack-and-a-half
     apache-mode
     applescript-mode
     auctex
@@ -96,6 +97,8 @@
     groovy-mode
     guru-mode
     haml-mode
+    helm
+    helm-projectile
     haskell-mode
     hide-comnt
     highlight-parentheses
@@ -173,7 +176,8 @@
     writegood-mode
     yaml-mode
     yari
-    yasnippet)
+    yasnippet
+    zenburn-theme)
   "A list of packages to ensure are installed at launch.")
 
 (defun prelude-packages-installed-p ()
