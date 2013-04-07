@@ -19,3 +19,4 @@ savefile/
 org-clock-save.el
 tramp
 /prelude-modules.el
+projectile-bookmarks.eld
