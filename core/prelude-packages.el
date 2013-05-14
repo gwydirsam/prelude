@@ -161,7 +161,7 @@
     ssh-config-mode
     string-utils
     stripe-buffer
-    sunrise-commander
+    ;sunrise-commander
     surround
     textile-mode
     ucs-utils
