@@ -41,6 +41,7 @@
 (package-initialize)
 
 (defvar prelude-packages
+<<<<<<< HEAD
   '(ace-jump-mode ack-and-a-half apache-mode applescript-mode auctex
     auto-compile browse-url-dwim cl-lib clojure-mode clojure-test-mode
     coffee-mode css-mode dash diminish dired+ dired-details dired-details+
