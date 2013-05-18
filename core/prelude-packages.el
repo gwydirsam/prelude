@@ -32,6 +32,7 @@
 ;; Boston, MA 02110-1301, USA.
 
 ;;; Code:
+(require 'cl)
 (require 'package)
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.milkbox.net/packages/") t)
@@ -40,160 +41,52 @@
 (package-initialize)
 
 (defvar prelude-packages
-  '(ace-jump-mode
-    ack-and-a-half
-    apache-mode
-    applescript-mode
-    auctex
-    auto-compile
-    browse-url-dwim
-    cl-lib
-    clojure-mode
-    clojure-test-mode
-    coffee-mode
-    css-mode
-    dash
-    dired+
-    dired-details
-    dired-details+
-    dired-single
-    dropdown-list
-    elisp-slime-nav
-    erlang
-    evil
-    evil-leader
-    evil-numbers
-    evil-paredit
-    exec-path-from-shell
-    expand-region
-    feature-mode
-    findr
-    flycheck
-    flymake-coffee
-    flymake-css
-    flymake-cursor
-    flymake-easy
-    flymake-haml
-    flymake-jslint
-    flymake-perlcritic
-    flymake-php
-    flymake-python-pyflakes
-    flymake-ruby
-    flymake-sass
-    flymake-shell
-    flyspell-lazy
-    font-utils
-    gh
-    gist
-    git-commit-mode
-    gitconfig-mode
-    gitignore-mode
-    gitty
-    go-mode
-    google-c-style
-    groovy-mode
-    guru-mode
-    haml-mode
-    helm
-    helm-projectile
-    haskell-mode
-    hide-comnt
-    highlight-parentheses
-    hl-line+
-    hl-sexp
-    htmlize
-    inf-ruby
-    inflections
-    jump
-    latex-pretty-symbols
-    less-css-mode
-    list-utils
-    logito
-    lua-mode
-    magit
-    magit-commit-training-wheels
-    magit-gh-pulls
-    magit-push-remote
-    magithub
-    markdown-mode
-    mediawiki
-    melpa
-    minimap
-    multi-term
-    notmuch
-    nrepl
-    org
-    org-bullets
-    osx-browse
-    osx-location
-    packed
-    paredit
-    pcache
-    persistent-soft
-    php-mode
-    powerline
-    pretty-mode
-    pretty-symbols-mode
+  '(ace-jump-mode ack-and-a-half apache-mode applescript-mode auctex
+    auto-compile browse-url-dwim cl-lib clojure-mode clojure-test-mode
+    coffee-mode css-mode dash diminish dired+ dired-details dired-details+
+    dired-single dropdown-list elisp-slime-nav erlang evil evil-leader
+    evil-numbers evil-paredit exec-path-from-shell expand-region feature-mode
+    findr flycheck flymake-coffee flymake-css flymake-cursor flymake-easy
+    flymake-haml flymake-jslint flymake-perlcritic flymake-php ;flymake-python-pyflakes
+    flymake-ruby flymake-sass flymake-shell flyspell-lazy font-utils gh
+    gist git-commit-mode gitconfig-mode gitignore-mode gitty
+    go-mode google-c-style groovy-mode guru-mode haml-mode helm
+    helm-projectile haskell-mode hide-comnt highlight-parentheses hl-line+
+    hl-sexp htmlize inf-ruby ido-ubiquitous inflections jump latex-pretty-symbols less-css-mode
+    list-utils logito lua-mode key-chord magit magit-commit-training-wheels magit-gh-pulls
+    magit-push-remote magithub markdown-mode mediawiki melpa minimap
+    multi-term notmuch nrepl org org-bullets osx-browse osx-location packed
+    paredit pcache persistent-soft php-mode powerline pretty-mode pretty-symbols-mode
     projectile
-    python
-    rainbow-delimiters
-    rainbow-mode
-    redo+
-    rinari
-    ruby-block
-    ruby-compilation
-    ruby-electric
-    ruby-end
-    ruby-interpolation
-    ruby-mode
-    ruby-tools
-    rvm
-    s
-    sass-mode
-    scala-mode
-    scala-mode2
-    scss-mode
-    shell-command
-    shell-here
-    smex
-    smooth-scrolling
-    sr-speedbar
-    ssh-config-mode
-    string-utils
-    stripe-buffer
-    ;sunrise-commander
-    surround
-    textile-mode
-    ucs-utils
-    undo-tree
-    unicode-fonts
-    unicode-progress-reporter
-    unicode-whitespace
-    volatile-highlights
-    writegood-mode
-    yaml-mode
-    yari
-    yasnippet
-    zenburn-theme)
+    rainbow-delimiters rainbow-mode redo+ rinari ruby-block ruby-compilation
+    ruby-electric ruby-end ruby-interpolation ruby-mode ruby-tools rvm
+    s sass-mode scala-mode scala-mode2 scss-mode shell-command shell-here
+    smex smooth-scrolling sr-speedbar ssh-config-mode string-utils stripe-buffer
+    surround textile-mode ucs-utils undo-tree
+    unicode-fonts unicode-progress-reporter unicode-whitespace volatile-highlights writegood-mode
+    yaml-mode yari yasnippet zenburn-theme)
   "A list of packages to ensure are installed at launch.")
 
 (defun prelude-packages-installed-p ()
-  (-all? #'package-installed-p prelude-packages))
+  "Check if all packages in `prelude-packages' are installed."
+  (every #'package-installed-p prelude-packages))
 
 (defun prelude-install-packages ()
+  "Install all packages listed in `prelude-packages'."
   (unless (prelude-packages-installed-p)
     ;; check for new packages (package versions)
     (message "%s" "Emacs Prelude is now refreshing its package database...")
     (package-refresh-contents)
     (message "%s" " done.")
     ;; install the missing packages
-    (-each
-     (-reject #'package-installed-p prelude-packages)
-     #'package-install)))
+    (mapc #'package-install
+     (remove-if #'package-installed-p prelude-packages))))
 
 (prelude-install-packages)
 
 (defmacro prelude-auto-install (extension package mode)
+  "When file with EXTENSION is opened triggers auto-install of PACKAGE.
+PACKAGE is installed only if not already present.  The file is opened in MODE."
   `(add-to-list 'auto-mode-alist
                 `(,extension . (lambda ()
                                  (unless (package-installed-p ',package)
@@ -204,8 +97,12 @@
   '(("\\.clj\\'" clojure-mode clojure-mode)
     ("\\.coffee\\'" coffee-mode coffee-mode)
     ("\\.css\\'" css-mode css-mode)
+    ("\\.csv\\'" csv-mode csv-mode)
+    ("\\.d\\'" d-mode d-mode)
+    ("\\.dart\\'" dart-mode dart-mode)
     ("\\.erl\\'" erlang erlang-mode)
     ("\\.feature\\'" feature-mode feature-mode)
+    ("\\.go\\'" go-mode go-mode)
     ("\\.groovy\\'" groovy-mode groovy-mode)
     ("\\.haml\\'" haml-mode haml-mode)
     ("\\.hs\\'" haskell-mode haskell-mode)
@@ -214,12 +111,13 @@
     ("\\.lua\\'" lua-mode lua-mode)
     ("\\.markdown\\'" markdown-mode markdown-mode)
     ("\\.md\\'" markdown-mode markdown-mode)
+    ("\\.ml\\'" tuareg tuareg-mode)
     ("\\.php\\'" php-mode php-mode)
-    ("\\.py\\'" python python-mode)
     ("\\.sass\\'" sass-mode sass-mode)
     ("\\.scala\\'" scala-mode2 scala-mode)
     ("\\.scss\\'" scss-mode scss-mode)
     ("\\.slim\\'" slim-mode slim-mode)
+    ("\\.textile\\'" textile-mode textile-mode)
     ("\\.yml\\'" yaml-mode yaml-mode)))
 
 ;; markdown-mode doesn't have autoloads for the auto-mode-alist
@@ -228,16 +126,24 @@
   (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
   (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode)))
 
-(-each prelude-auto-install-alist
-  (lambda (entry)
-    (let ((extension (car entry))
-          (package (cadr entry))
-          (mode (cadr (cdr entry))))
-      (unless (package-installed-p package)
-        (prelude-auto-install extension package mode)))))
+;; build auto-install mappings
+(mapc
+ (lambda (entry)
+   (let ((extension (car entry))
+         (package (cadr entry))
+         (mode (cadr (cdr entry))))
+     (unless (package-installed-p package)
+       (prelude-auto-install extension package mode))))
+ prelude-auto-install-alist)
 
 (defun prelude-ensure-module-deps (packages)
-  (-each (-remove #'package-installed-p packages) #'package-install))
+  "Ensure PACKAGES are installed.
+Missing packages are installed automatically."
+  (mapc #'package-install (remove-if #'package-installed-p packages)))
 
 (provide 'prelude-packages)
+;; Local Variables:
+;; byte-compile-warnings: (not cl-functions)
+;; End:
+
 ;;; prelude-packages.el ends here
