@@ -57,6 +57,8 @@ by Prelude.")
   "This folder stores all the automatically generated save/history-files.")
 (defvar prelude-modules-file (expand-file-name "prelude-modules.el" prelude-dir)
   "This files contains a list of modules that will be loaded by Prelude.")
+(defvar prelude-personal-vendor-dir (expand-file-name "vendor" prelude-personal-dir)
+  "This folder houses additional personal packages that are not in ELPA (or MELPA).")
 
 (unless (file-exists-p prelude-savefile-dir)
   (make-directory prelude-savefile-dir))
@@ -74,7 +76,9 @@ by Prelude.")
 (add-to-list 'load-path prelude-core-dir)
 (add-to-list 'load-path prelude-modules-dir)
 (add-to-list 'load-path prelude-vendor-dir)
+(add-to-list 'load-path prelude-personal-vendor-dir)
 (prelude-add-subfolders-to-load-path prelude-vendor-dir)
+(prelude-add-subfolders-to-load-path prelude-personal-vendor-dir)
 
 ;; the core stuff
 (require 'prelude-packages)

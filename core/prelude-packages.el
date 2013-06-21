@@ -55,7 +55,7 @@
     hl-sexp htmlize inf-ruby ido-ubiquitous inflections jump latex-pretty-symbols less-css-mode
     list-utils logito lua-mode key-chord magit magit-commit-training-wheels magit-gh-pulls
     magit-push-remote magithub markdown-mode mediawiki melpa minimap
-    multi-term notmuch nrepl org org-bullets osx-browse osx-location packed
+    multi-term notmuch nrepl osx-browse osx-location packed
     paredit pcache persistent-soft php-mode powerline pretty-mode pretty-symbols-mode
     projectile
     rainbow-delimiters rainbow-mode redo+ rinari ruby-block ruby-compilation
