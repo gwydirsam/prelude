@@ -46,10 +46,10 @@
     coffee-mode css-mode dash diminish dired+ dired-details dired-details+
     dired-single dropdown-list elisp-slime-nav erlang evil evil-leader
     evil-numbers evil-paredit exec-path-from-shell expand-region feature-mode
-    findr flycheck flymake-coffee flymake-css flymake-cursor flymake-easy
+    findr flycheck flx-ido flymake-coffee flymake-css flymake-cursor flymake-easy
     flymake-haml flymake-jslint flymake-perlcritic flymake-php ;flymake-python-pyflakes
     flymake-ruby flymake-sass flymake-shell flyspell-lazy font-utils gh
-    gist git-commit-mode gitconfig-mode gitignore-mode gitty
+    gist git-commit-mode grizzl gitconfig-mode gitignore-mode gitty
     go-mode google-c-style groovy-mode guru-mode haml-mode helm
     helm-projectile haskell-mode hide-comnt highlight-parentheses hl-line+
     hl-sexp htmlize inf-ruby ido-ubiquitous inflections jump latex-pretty-symbols less-css-mode
@@ -61,7 +61,7 @@
     rainbow-delimiters rainbow-mode redo+ rinari ruby-block ruby-compilation
     ruby-electric ruby-end ruby-interpolation ruby-mode ruby-tools rvm
     s sass-mode scala-mode scala-mode2 scss-mode shell-command shell-here
-    smex smooth-scrolling sr-speedbar ssh-config-mode string-utils stripe-buffer
+    smartparens smex smooth-scrolling sr-speedbar ssh-config-mode string-utils stripe-buffer
     surround textile-mode ucs-utils undo-tree
     unicode-fonts unicode-progress-reporter unicode-whitespace volatile-highlights writegood-mode
     yaml-mode yari yasnippet zenburn-theme)
