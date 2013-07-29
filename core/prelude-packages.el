@@ -41,30 +41,16 @@
 (package-initialize)
 
 (defvar prelude-packages
-  '(ace-jump-mode ack-and-a-half apache-mode applescript-mode auctex
-    auto-compile browse-url-dwim cl-lib clojure-mode clojure-test-mode
-    coffee-mode css-mode dash diminish dired+ dired-details dired-details+
-    dired-single dropdown-list elisp-slime-nav erlang evil evil-leader
-    evil-numbers evil-paredit exec-path-from-shell expand-region feature-mode
-    findr flycheck flx-ido flymake-coffee flymake-css flymake-cursor flymake-easy
-    flymake-haml flymake-jslint flymake-perlcritic flymake-php ;flymake-python-pyflakes
-    flymake-ruby flymake-sass flymake-shell flyspell-lazy font-utils gh
-    gist git-commit-mode grizzl gitconfig-mode gitignore-mode gitty
-    go-mode google-c-style groovy-mode guru-mode haml-mode helm
-    helm-projectile haskell-mode hide-comnt highlight-parentheses hl-line+
-    hl-sexp htmlize inf-ruby ido-ubiquitous inflections jump latex-pretty-symbols less-css-mode
-    list-utils logito lua-mode key-chord magit magit-commit-training-wheels magit-gh-pulls
-    magit-push-remote magithub markdown-mode mediawiki melpa minimap
-    multi-term notmuch nrepl osx-browse osx-location packed
-    paredit pcache persistent-soft php-mode powerline pretty-mode pretty-symbols-mode
-    projectile
-    rainbow-delimiters rainbow-mode redo+ rinari ruby-block ruby-compilation
-    ruby-electric ruby-end ruby-interpolation ruby-mode ruby-tools rvm
-    s sass-mode scala-mode scala-mode2 scss-mode shell-command shell-here
-    smartparens smex smooth-scrolling sr-speedbar ssh-config-mode string-utils stripe-buffer
-    surround textile-mode ucs-utils undo-tree
-    unicode-fonts unicode-progress-reporter unicode-whitespace volatile-highlights writegood-mode
-    yaml-mode yari yasnippet zenburn-theme)
+  '(ace-jump-mode ack-and-a-half dash diminish elisp-slime-nav
+    expand-region flx-ido flycheck gist
+    git-commit-mode gitconfig-mode gitignore-mode grizzl
+    guru-mode helm helm-projectile ido-ubiquitous
+    key-chord magit rainbow-mode
+    smartparens smex undo-tree
+    volatile-highlights zenburn-theme
+    ;; My Packages
+    evil evil-leader evil-numbers evil-paredit surround
+    stripe-buffer)
   "A list of packages to ensure are installed at launch.")
 
 (defun prelude-packages-installed-p ()
