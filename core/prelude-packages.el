@@ -42,14 +42,12 @@
 
 (defvar prelude-packages
   '(ace-jump-mode ack-and-a-half dash diminish elisp-slime-nav
-    expand-region flx-ido flycheck gist
-    git-commit-mode gitconfig-mode gitignore-mode grizzl
-    guru-mode helm helm-projectile ido-ubiquitous
-    key-chord magit rainbow-mode
-    smartparens smex undo-tree
-    volatile-highlights zenburn-theme
-    ;; My Packages
-    evil evil-leader evil-numbers evil-paredit surround
+    expand-region flx-ido flycheck gist git-commit-mode gitconfig-mode
+    gitignore-mode grizzl guru-mode helm helm-projectile
+    ido-ubiquitous key-chord magit rainbow-mode smartparens smex
+    undo-tree volatile-highlights
+    ;; My Packages evil
+    evil-leader evil-numbers evil-paredit surround
     stripe-buffer)
   "A list of packages to ensure are installed at launch.")
 
